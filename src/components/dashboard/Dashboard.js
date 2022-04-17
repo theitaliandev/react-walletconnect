@@ -1,3 +1,5 @@
+import { useMoralis, useChain } from "react-moralis";
+
 import walletIcon from "./wallet-icon.png";
 import chainIcon from "./chain-icon.png";
 
@@ -16,6 +18,16 @@ const style = {
 };
 
 export default function Dashboard() {
+  const { logout, user } = useMoralis();
+  const { chain } = useChain();
+
+  const unAuth = async () => {
+    try {
+      await logout();
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <div className={style.main}>
       <div className={style.navbar}>
@@ -23,7 +35,9 @@ export default function Dashboard() {
           <p>React</p>
           <p>Walletconnect</p>
         </div>
-        <button className={style.button}>log out</button>
+        <button onClick={unAuth} className={style.button}>
+          log out
+        </button>
       </div>
       <div className={style.content}>
         <div className={style.card}>
@@ -32,14 +46,14 @@ export default function Dashboard() {
               <img className="h-10 w-10" src={walletIcon} alt="Wallet Icon" />
               <p className={style.cardTitle}>Wallet Address</p>
             </div>
-            <p>00000000000000000000000000000000</p>
+            <p>{user.get("ethAddress")}</p>
           </div>
           <div className="mt-10">
             <div className={style.walletTitle}>
               <img className="h-10 w-10" src={chainIcon} alt="Chain Icon" />
               <p className={style.cardTitle}>Chain</p>
             </div>
-            <p>Rinkeby Testnet</p>
+            <p>{chain?.name}</p>
           </div>
         </div>
       </div>

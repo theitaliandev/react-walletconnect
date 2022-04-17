@@ -1,13 +1,13 @@
-// import Login from "./components/login";
+import Login from "./components/login";
 import Dashboard from "./components/dashboard";
+import { useMoralis } from "react-moralis";
 
 function App() {
-  return (
-    <>
-      {/* <Login /> */}
-      <Dashboard />
-    </>
-  );
+  const { isAuthenticated } = useMoralis();
+  if (isAuthenticated) {
+    return <Dashboard />;
+  }
+  return <Login />;
 }
 
 export default App;

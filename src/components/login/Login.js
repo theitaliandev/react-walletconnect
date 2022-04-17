@@ -1,3 +1,5 @@
+import { useMoralis } from "react-moralis";
+
 import waves from "./bg-waves.png";
 import network from "./img-login.png";
 
@@ -14,6 +16,17 @@ const style = {
 };
 
 export default function Login() {
+  const { authenticate } = useMoralis();
+  const walletConnectAuth = async () => {
+    try {
+      await authenticate({
+        provider: "walletconnect",
+        signingMessage: "Auth usign wallettconnect by theItalianDev",
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <div className={style.main}>
       <div className={style.leftSide}>
@@ -25,7 +38,9 @@ export default function Login() {
         <div className={style.content}>
           <p className={style.title}>React</p>
           <p className={style.title}>Walletconnect</p>
-          <button className={style.loginButton}>Log in</button>
+          <button onClick={walletConnectAuth} className={style.loginButton}>
+            Log in
+          </button>
         </div>
       </div>
       <div className={style.rightSide}>
