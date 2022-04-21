@@ -28,7 +28,7 @@ function App() {
       {!isAuthenticated ? (
         <button
           onClick={walletconnectAuth}
-          className="bg-white hover:bg-gray-100 px-6 py-2 rounded-md text-xl text-blue-500 font-bold transitiond duration-300"
+          className="bg-white hover:bg-gray-100 px-6 py-2 rounded-md text-xl text-blue-500 font-bold transition duration-300"
         >
           Walletconnect Auth
         </button>
@@ -38,7 +38,7 @@ function App() {
           <p className="font-bold">Chain: {chain?.name}</p>
           <button
             onClick={logoutHandler}
-            className="bg-white hover:bg-gray-100 px-6 py-2 rounded-md text-xl text-blue-500 font-bold transitiond duration-300"
+            className="bg-white hover:bg-gray-100 px-6 py-2 rounded-md text-xl text-blue-500 font-bold transition duration-300"
           >
             Logout
           </button>
